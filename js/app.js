@@ -35,8 +35,8 @@ const app = {
         for (let question = 0; question < app.questions.length; question++ ) {
             questionsListElement.innerHTML += `
             <div id="question" class="question">
-                <label for="question + ${question}">${app.questions[question]}</br></label>
-                <select name="question + ${question}" id="question + ${question}">
+                <label for="question${question}">${app.questions[question]}</br></label>
+                <select name="question${question}" id="question${question}">
                     <option value="">--Votre choix--</option>
                     <option value="1">Pas du tout</option>
                     <option value="2">Rarement</option>
@@ -52,36 +52,38 @@ const app = {
         submitBtnZoneElement.innerHTML = `
             <button id="submitBtn" type="button">Voir résultat</button>
         `;
-
+      
         app.submit();
 
       },
 
     submit: function() {
+
         buttonSubmitElement = document.getElementById('submitBtn');
-        buttonSubmitElement.addEventListener('click', handleSubmitClick);
+        buttonSubmitElement.addEventListener('click', app.handleSubmitClick);
     },
 
     handleSubmitClick: function() {
+        contentElement = document.getElementById('content');
+
+        scoreElement = document.getElementById('score');
+
+        score = [];
+        for (let answer = 0; answer < app.questions.length; answer++) {
+            score.push(Number(document.getElementById(`question${answer}`).value));
+        };
+        
+        finalScore = score.reduce(function(accumulateur, valeurCourante){
+            return accumulateur + valeurCourante;
+        });
+        
+        scoreElement.innerHTML = finalScore;
+        contentElement.innerHTML = '';
 
     }
 
 };
 
-
-
-
-function handleButtonClick() {
-    const mainContent = document.getElementById('content');
-    const scoreTest = document.getElementById('score');
-    const reponseQuestion1 = document.getElementById('question1');
-    const reponseQuestion2 = document.getElementById('question2');
-    const reponseQuestion3 = document.getElementById('question3');
-    const reponseQuestion4 = document.getElementById('question4');
-    scoreTest.innerHTML = Number(reponseQuestion1.value) + Number(reponseQuestion2.value) + Number(reponseQuestion3.value) + Number(reponseQuestion4.value);
-    mainContent.innerHTML = '';
-
-};
 
 document.addEventListener('DOMContentLoaded', app.start);
 
