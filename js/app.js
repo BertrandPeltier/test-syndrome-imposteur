@@ -37,7 +37,7 @@ const app = {
         for (let question = 0; question < app.questions.length; question++ ) {
             questionsListElement.innerHTML += `
             <div id="question" class="question">
-                <label for="question${question}">${app.questions[question]}</br></label>
+                <label for="question${question}">${app.questions[question]}</label></br>
                 <select name="question${question}" id="question${question}">
                     <option value="">--Votre choix--</option>
                     <option value="1">Pas du tout</option>
@@ -49,7 +49,7 @@ const app = {
             </div>   
             `;
         };
-
+        
         submitBtnZoneElement = document.getElementById('submitBtnZone');
         submitBtnZoneElement.innerHTML = `
             <button id="submitBtn" type="button">Voir résultat</button>
@@ -71,12 +71,15 @@ const app = {
 
         allAnswers = true;
 
+        defaultAnswer = null;
+
         for (let answer = 0; answer < app.questions.length; answer++) {
             
             response = Number(document.getElementById(`question${answer}`).value);
 
             if (response === 0) {
                 allAnswers = false;
+                defaultAnswer = answer + 1;
                 break;
             } else {
                 app.score.push(response);
@@ -88,7 +91,7 @@ const app = {
         if (allAnswers) {
             app.displayScore();
         } else {
-            alert('Vous devez répondre à toutes les questions.')
+            alert(`Vous devez répondre à toutes les questions. Il vous manque la question n° ${defaultAnswer}`);
             app.submit();
         }
 
@@ -100,10 +103,33 @@ const app = {
             return accumulateur + valeurCourante;
         });
 
+        if (finalScore <= 40) {Interpretation = 'Vous vivez faiblement l’expérience du sentiment d’imposture.'};
+        if (finalScore > 40 && finalScore <= 60) { Interpretation = 'Vous vivez modérément l’expérience du sentiment d’imposture.'};
+        if (finalScore > 60 && finalScore <= 80) {Interpretation = 'vous vivez fréquemment l’expérience de sentiment d’imposture.'};
+        if (finalScore > 80) {Interpretation = 'vous vivez intensément l’expérience du sentiment d’imposture.'};
+
         contentElement = document.getElementById('content');
-        scoreElement = document.getElementById('score');
-        scoreElement.innerHTML = finalScore;
-        contentElement.innerHTML = '';
+        
+        contentElement.innerHTML = `
+        <h2>Interprétation des résultats</h2>
+        <p>Le test de l’Imposteur a été développé pour aider les individus à déterminer s’ils ont ou non les caractéristiques correspondant au sentiment d’imposture et si oui dans quelle mesure.</p>
+        <p>Après avoir fait le test, il faut additionner le nombre points par réponses pour chaque affirmation.</p>
+        <p>Pas du tout = 1point / Rarement = 2 points / Parfois = 3 points / Souvent = 4 points / Tout le temps = 5 points</p>
+        
+        <ul>
+            <li>Si votre score est de 40 ou moins : vous vivez faiblement l’expérience du sentiment d’imposture.</li>
+            <li>Si votre score est compris entre 41 et 60 : vous vivez modérément l’expérience du sentiment d’imposture.</li>
+            <li>Si votre score est compris entre 61 et 80 : vous vivez fréquemment l’expérience de sentiment d’imposture.</li>
+            <li>Si votre score est plus élevé que 80 : vous vivez intensément l’expérience du sentiment d’imposture.</li>
+        </ul>
+
+        <P>Plus le score est élevé, le plus fréquemment et sérieusement le Syndrome de l’Imposteur peut interférer dans la vie d’un individu.</p>
+
+        <h2>Votre score est de ${finalScore}</h2>
+        <p>${Interpretation}</P>
+
+        <p>Tiré et traduit à partir de « The Impostor Phenomenon: When Success Makes You Feel Like A Fake, p20-22, P.R. Clance, 185 Toronto, Bantham Books. Coyright 1985 Pauline Rose Clance, PhD, ABPP.</p>       
+        `;
     },
 
 };
