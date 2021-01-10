@@ -23,6 +23,8 @@ const app = {
         'Je me sens mal et découragé(e) si je ne suis pas le/la « meilleur(e) » ou au minimum « remarquable » dans les situations de compétitions.'
     ],
 
+    score: [],
+
     start: function() {
         buttonStart = document.getElementById('startBtn');
         buttonStart.addEventListener('click', app.handleStartClick);
@@ -55,7 +57,7 @@ const app = {
       
         app.submit();
 
-      },
+    },
 
     submit: function() {
 
@@ -64,23 +66,45 @@ const app = {
     },
 
     handleSubmitClick: function() {
-        contentElement = document.getElementById('content');
 
-        scoreElement = document.getElementById('score');
+        app.score = [];
 
-        score = [];
+        allAnswers = true;
+
         for (let answer = 0; answer < app.questions.length; answer++) {
-            score.push(Number(document.getElementById(`question${answer}`).value));
+            
+            response = Number(document.getElementById(`question${answer}`).value);
+
+            if (response === 0) {
+                allAnswers = false;
+                break;
+            } else {
+                app.score.push(response);
+            }
+
         };
+
+      
+        if (allAnswers) {
+            app.displayScore();
+        } else {
+            alert('Vous devez répondre à toutes les questions.')
+            app.submit();
+        }
+
+    },
+
+    displayScore: function() {
         
-        finalScore = score.reduce(function(accumulateur, valeurCourante){
+        finalScore = app.score.reduce(function(accumulateur, valeurCourante){
             return accumulateur + valeurCourante;
         });
-        
+
+        contentElement = document.getElementById('content');
+        scoreElement = document.getElementById('score');
         scoreElement.innerHTML = finalScore;
         contentElement.innerHTML = '';
-
-    }
+    },
 
 };
 
