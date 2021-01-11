@@ -5,10 +5,19 @@ body {
 
 }
 
+img {
+    max-width: 10rem;
+}
+
 header {
     background-color: #376c7a;
     color: #f9cb3a;
     padding: 0.5rem;
+    display: flex;
+}
+
+.title_bloc {
+    display: bloc;
 }
 
 .header_title {
@@ -46,6 +55,7 @@ header {
     background-color: #376c7a;
     color: #f9cb3a;
     font-family: 'ABeeZee', sans-serif;
+    border-radius: 10px;
 }
 
 .question {
@@ -69,6 +79,7 @@ header {
     background-color: #376c7a;
     color: #f9cb3a;
     font-family: 'ABeeZee', sans-serif;
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 500px) {
