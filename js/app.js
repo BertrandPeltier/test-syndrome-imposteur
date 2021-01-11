@@ -48,7 +48,7 @@ const app = {
                     <p id =question-${question}-text>${question + 1} - ${app.questions[question]}</p>
                     <div class="choice">
                         <div>
-                            <input type="radio" id="choix1question${question}" name="question${question}" value="1" checked>
+                            <input type="radio" id="choix1question${question}" name="question${question}" value="1">
                             <label for="choix1question${question}">Pas du tout</label>
                         </div>
                 

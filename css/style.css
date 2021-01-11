@@ -59,6 +59,7 @@ header {
 
 .choice {
     display: flex;
+    font-size: 0.8rem;
 }
 
 .submit_button {
@@ -68,4 +69,15 @@ header {
     background-color: #376c7a;
     color: #f9cb3a;
     font-family: 'ABeeZee', sans-serif;
+}
+
+@media screen and (max-width: 500px) {
+    
+    html {
+        font-size: 0.8rem;
+    }
+    
+    .choice {
+        display: block;
+    }
 }
