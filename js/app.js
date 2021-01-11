@@ -32,21 +32,44 @@ const app = {
 
     handleStartClick: function() {
 
+        startButtonZoneElement = document.getElementById('startBtnZone');
+        startButtonZoneElement.innerHTML = '';
+
         questionsListElement = document.getElementById('questionsList');
 
         for (let question = 0; question < app.questions.length; question++ ) {
             questionsListElement.innerHTML += `
-            <div id="question" class="question">
-                <label for="question${question}">${app.questions[question]}</label></br>
-                <select name="question${question}" id="question${question}">
-                    <option value="">--Votre choix--</option>
-                    <option value="1">Pas du tout</option>
-                    <option value="2">Rarement</option>
-                    <option value="3">Parfois</option>
-                    <option value="4">Souvent</option>
-                    <option value="5">Tout le temps</option>
-                </select>
-            </div>   
+                <div id="question" class="question">
+
+                    <p>${app.questions[question]}</p>
+                    <div class="choice">
+                        <div>
+                            <input type="radio" id="choix1question${question}" name="question${question}" value="1">
+                            <label for="choix1question${question}">Pas du tout</label>
+                        </div>
+                
+                        <div>
+                            <input type="radio" id="choix2question${question}" name="question${question}" value="2">
+                            <label for="choix2question${question}">Rarement</label>
+                        </div>
+                    
+                        <div>
+                            <input type="radio" id="choix3question${question}" name="question${question}" value="3">
+                            <label for="choix3question${question}">Parfois</label>
+                        </div>
+                    
+                        <div>
+                            <input type="radio" id="choix4question${question}" name="question${question}" value="4">
+                            <label for="choix4question${question}">Souvent</label>
+                        </div>
+                    
+                        <div>
+                            <input type="radio" id="choix5question${question}" name="question${question}" value="5">
+                            <label for="choix5question${question}">Tout le temps</label>
+                        </div>
+                    </div>
+            
+                </div>  
             `;
         };
         
@@ -71,28 +94,21 @@ const app = {
 
         allAnswers = true;
 
-        defaultAnswer = null;
+        for (let question = 0; question < app.questions.length; question++) {
 
-        for (let answer = 0; answer < app.questions.length; answer++) {
-            
-            response = Number(document.getElementById(`question${answer}`).value);
-
-            if (response === 0) {
-                allAnswers = false;
-                defaultAnswer = answer + 1;
-                break;
-            } else {
-                app.score.push(response);
-            }
-
+            for (let choice = 1; choice < 6 ; choice++) {
+                choiceElement = document.getElementById(`choix${choice}question${question}`);
+                if(choiceElement.checked) {
+                    app.score.push(Number(choiceElement.value));
+                }
+            };
         };
 
-      
-        if (allAnswers) {
-            app.displayScore();
-        } else {
-            alert(`Vous devez répondre à toutes les questions. Il vous manque la question n° ${defaultAnswer}`);
+        if (app.score.length !== app.questions.length) {
+            alert('Vous devez répondre à toutes les questions.');
             app.submit();
+        } else {
+            app.displayScore();
         }
 
     },
@@ -127,8 +143,7 @@ const app = {
 
         <h2>Votre score est de ${finalScore}</h2>
         <p>${Interpretation}</P>
-
-        <p>Tiré et traduit à partir de « The Impostor Phenomenon: When Success Makes You Feel Like A Fake, p20-22, P.R. Clance, 185 Toronto, Bantham Books. Coyright 1985 Pauline Rose Clance, PhD, ABPP.</p>       
+      
         `;
     },
 
