@@ -32,6 +32,10 @@ const app = {
 
     handleStartClick: function() {
 
+        document.getElementById('explaination').innerHTML = 'Pour chaque question, cochez l’affirmation qui vous correspond le mieux. Répondez de la manière la plus intuitive possible.';
+        document.getElementById('explaination').classList.add('explaination');
+
+
         startButtonZoneElement = document.getElementById('startBtnZone');
         startButtonZoneElement.innerHTML = '';
 
@@ -44,7 +48,7 @@ const app = {
                     <p id =question-${question}-text>${question + 1} - ${app.questions[question]}</p>
                     <div class="choice">
                         <div>
-                            <input type="radio" id="choix1question${question}" name="question${question}" value="1">
+                            <input type="radio" id="choix1question${question}" name="question${question}" value="1" checked>
                             <label for="choix1question${question}">Pas du tout</label>
                         </div>
                 
@@ -79,7 +83,7 @@ const app = {
         
         submitBtnZoneElement = document.getElementById('submitBtnZone');
         submitBtnZoneElement.innerHTML = `
-            <button id="submitBtn" type="button">Voir le résultat</button>
+            <button id="submitBtn" type="button">Résultat du test</button>
         `;
 
         document.getElementById('submitBtn').classList.add('submit_button');
@@ -133,24 +137,32 @@ const app = {
         contentElement = document.getElementById('content');
         
         contentElement.innerHTML = `
-        <h2>Interprétation des résultats</h2>
-        <p>Le test de l’Imposteur a été développé pour aider les individus à déterminer s’ils ont ou non les caractéristiques correspondant au sentiment d’imposture et si oui dans quelle mesure.</p>
-        <p>Après avoir fait le test, il faut additionner le nombre points par réponses pour chaque affirmation.</p>
-        <p>Pas du tout = 1point / Rarement = 2 points / Parfois = 3 points / Souvent = 4 points / Tout le temps = 5 points</p>
+        <h2 id="interpretation_title">Interprétation des résultats</h2>
+        <p id="interpretation_text">Le test de l’Imposteur a été développé pour aider les individus à déterminer s’ils ont ou non les caractéristiques correspondant au sentiment d’imposture et si oui dans quelle mesure.</br>
+        Après avoir fait le test, il faut additionner le nombre points par réponses pour chaque affirmation.</br>
+        Pas du tout = 1point / Rarement = 2 points / Parfois = 3 points / Souvent = 4 points / Tout le temps = 5 points</p>
         
-        <ul>
+        <ul id="interpretation_liste">
             <li>Si votre score est de 40 ou moins : vous vivez faiblement l’expérience du sentiment d’imposture.</li>
             <li>Si votre score est compris entre 41 et 60 : vous vivez modérément l’expérience du sentiment d’imposture.</li>
             <li>Si votre score est compris entre 61 et 80 : vous vivez fréquemment l’expérience de sentiment d’imposture.</li>
             <li>Si votre score est plus élevé que 80 : vous vivez intensément l’expérience du sentiment d’imposture.</li>
         </ul>
 
-        <P>Plus le score est élevé, le plus fréquemment et sérieusement le Syndrome de l’Imposteur peut interférer dans la vie d’un individu.</p>
+        <P id="interpretation_text2">Plus le score est élevé, le plus fréquemment et sérieusement le Syndrome de l’Imposteur peut interférer dans la vie d’un individu.</p>
 
-        <h2>Votre score est de ${finalScore}</h2>
-        <p>${Interpretation}</P>
+        <h2 id="interpretation_title2">Votre score est de ${finalScore}</h2>
+        <p id="interpretation_text3">${Interpretation}</P>
       
         `;
+
+        document.getElementById('interpretation_title').classList.add('explaination');
+        document.getElementById('interpretation_title2').classList.add('explaination', 'color_background');
+
+        document.getElementById('interpretation_text').classList.add('explaination_text');
+        document.getElementById('interpretation_text2').classList.add('explaination_text');
+        document.getElementById('interpretation_text3').classList.add('explaination_text', 'color_background');
+
     },
 
 };

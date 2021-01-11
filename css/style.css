@@ -13,23 +13,34 @@ header {
 
 .header_title {
     font-size: 2rem;
-    padding: 0.5rem;
+    /*padding: 0.5rem;*/
 }
 
 .header_subtitle {
     font-size: 1rem;
     font-style: italic;
-    padding: 0.5rem;
+    /*padding: 0.5rem;*/
 }
 
-.header_explaination {
+.explaination {
+
     font-size: 1rem;
     font-weight: bold;
     padding: 0.5rem;
 }
 
+.explaination_text {
+    padding: 0.5rem;
+}
+
+.color_background {
+    background-color: #376c7a;
+    color: #f9cb3a;
+}
+
 #startBtn {
     margin: 0.5rem;
+    margin-top: 1rem;
     padding: 0.3rem;
     font-size: 1.1rem;
     background-color: #376c7a;
@@ -51,7 +62,7 @@ header {
 }
 
 .submit_button {
-    margin: 0.5rem;
+    /*margin: 0.5rem;*/
     padding: 0.3rem;
     font-size: 1.1rem;
     background-color: #376c7a;
