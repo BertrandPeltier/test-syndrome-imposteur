@@ -11,10 +11,6 @@ header {
     padding: 0.5rem;
 }
 
-.content {
-
-}
-
 .header_title {
     font-size: 2rem;
     padding: 0.5rem;
@@ -32,6 +28,33 @@ header {
     padding: 0.5rem;
 }
 
+#startBtn {
+    margin: 0.5rem;
+    padding: 0.3rem;
+    font-size: 1.1rem;
+    background-color: #376c7a;
+    color: #f9cb3a;
+    font-family: 'ABeeZee', sans-serif;
+}
+
+.question {
+    margin: 2.5rem 1.3rem;
+}
+
+.question_text {
+    margin: 0.7rem 0;
+    text-decoration: underline;
+}
+
 .choice {
     display: flex;
+}
+
+.submit_button {
+    margin: 0.5rem;
+    padding: 0.3rem;
+    font-size: 1.1rem;
+    background-color: #376c7a;
+    color: #f9cb3a;
+    font-family: 'ABeeZee', sans-serif;
 }

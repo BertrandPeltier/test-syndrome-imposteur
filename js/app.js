@@ -39,9 +39,9 @@ const app = {
 
         for (let question = 0; question < app.questions.length; question++ ) {
             questionsListElement.innerHTML += `
-                <div id="question" class="question">
+                <div id="question-${question}">
 
-                    <p>${app.questions[question]}</p>
+                    <p id =question-${question}-text>${question + 1} - ${app.questions[question]}</p>
                     <div class="choice">
                         <div>
                             <input type="radio" id="choix1question${question}" name="question${question}" value="1">
@@ -71,12 +71,18 @@ const app = {
             
                 </div>  
             `;
+
+            document.getElementById(`question-${question}`).classList.add('question');
+
+            document.getElementById(`question-${question}-text`).classList.add('question_text');
         };
         
         submitBtnZoneElement = document.getElementById('submitBtnZone');
         submitBtnZoneElement.innerHTML = `
-            <button id="submitBtn" type="button">Voir résultat</button>
+            <button id="submitBtn" type="button">Voir le résultat</button>
         `;
+
+        document.getElementById('submitBtn').classList.add('submit_button');
       
         app.submit();
 
